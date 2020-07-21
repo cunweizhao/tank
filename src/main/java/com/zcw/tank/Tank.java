@@ -11,18 +11,19 @@ import java.util.Random;
  * @Date: 2020-07-20 12:03
  */
 public class Tank {
-    private int x, y;
-    private Dir dir = Dir.DOWN;
+     int x, y;
+     Dir dir = Dir.DOWN;
     private static final int SPEED = 5;
     private boolean moving = true;
-    private TankFrame tf = null;
+     TankFrame tf = null;
     private boolean living = true;
     //创建分组，
-    private Group group = Group.BAD;
+     Group group = Group.BAD;
     private Random random = new Random();
 
     Rectangle rect = new Rectangle();
-
+    //FourDirFireStrategy 大招
+    FireStrategy fs = new DefaultFireStrategy();
 
     public static final int WIDTH = ResourceMgr.goodTankU.getWidth();
     public static final int HEIGHT = ResourceMgr.goodTankU.getHeight();
@@ -126,9 +127,7 @@ public class Tank {
     }
 
     public void fire() {
-        int bx = this.x + Tank.WIDTH / 2 - Bullet.WIDTH / 2;
-        int by = this.y + Tank.HEIGHT / 2 - Bullet.HEIGHT / 2;
-        tf.bullets.add(new Bullet(bx, by, this.dir, this.tf, this.group));
+        fs.fire(this);
     }
 
 

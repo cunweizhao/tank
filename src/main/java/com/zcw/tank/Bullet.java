@@ -27,6 +27,8 @@ public class Bullet {
         this.tf = tf;
         this.group = group;
 
+        tf.bullets.add(this);
+
         rect.x = this.x;
         rect.y = this.y;
         rect.width = WIDTH;
